@@ -91,8 +91,8 @@ q!：不保存强制退出
 /要查找的词：n 查找下一个、N 查找上一个
 noh：查找完取消高亮显示
 替换：
-:s/old/new 当前行匹配到的第一个
-:s/old/new/g 当前行所有
+: s/old/new 当前行匹配到的第一个
+: s/old/new/g 当前行所有
 :%s/old/new/g 所有
 <img src="Vim.png" alt="alt text" width="800"/>
 
@@ -108,8 +108,10 @@ vim /etc/sysconfig/network-scripts/ifcfg-ens33
 
 添加如下代码：
 #IP 地址 ←
-IPADDR=192.168.202.100 #网关
-GATEWAY=192.168.202.2 #域名解析器
+IPADDR=192.168.202.100 
+#网关
+GATEWAY=192.168.202.2 
+#域名解析器
 DNS1=192.168.202.2
 
 重启服务：
@@ -153,9 +155,8 @@ pwd：print working directory
 cd - 回到上一个目录
 cd ../ 使用相对目录
 
-root 下： cd+pwd /root
-dsy 用户下： cd+pwd /home/dsy
-su dsy 切换 dsy 用户
+切换用户
+su [dsy]
 
 ls -a 显示所用文件
 .开头的是隐藏文件
@@ -163,7 +164,7 @@ ls-l=ll 显示文件详细信息
 ls / 显示/下面的目录
 
 创建目录 mkdir
-递归创建 mkdir a/b/C
+递归创建 mkdir -p a/b/C
 
 删除目录 rmdir
 递归删除 rmdir -p a/b/c
@@ -265,7 +266,7 @@ sudo [命令] 用超级管理员权限执行
 每个用户会有一个与自己同名的组，一个用户可以属于多个组
 组的信息文件在 /etc/group 下
 创建组 groupadd [组名]
-添加用户 usermod -g [dsy] [组名]
+添加用户 usermod -g [组名] [dsy] 
 删除用户 groupdel [dsy]
 改组名 groupmod -n [新名字] [旧名字]
 wheel 组权限
@@ -301,6 +302,7 @@ find [目录] [选项]
 find /home/dsy - name "*.txt"
 find -user dsy
 find /home/dsy -size -2M
+find /home/dsy -size +2M
 locate [filename]快速定位文件
 先使用updatedb 更新数据库
 
@@ -334,3 +336,55 @@ tar 打包文件 结合gzip可以压缩（使用最多）
 tar -zcvf info.tar.gz info
 tar -xvf info.tar.gz -C myinfo
 总结：打包zcvf 解压xvf -C
+
+##### 磁盘管理类
+安装tree
+yum -y install tree  -y为自动全部确认
+遇到源不可用的问题，直接使用
+yum install tree --disablerepo="*" --enablerepo="base" --setopt=base.baseurl=http://mirrors.aliyun.com/centos/7/os/x86_64/
+
+参数解释
+--disablerepo="*" 禁用默认配置仓库
+--enablerepo="base" 启用名为"base"的仓库
+--setopt=base.baseurl=http://mirrors.aliyun.com/centos/7/os/x86_64/ 临时设置base仓库的url
+
+du：disk usage 
+du 目录/文件 (一般用来看目录)
+-h 人类友好阅读
+-a 不仅看子目录大小，还包括文件
+-s 只显示总和
+du --max-depth=1 -ah 显示当前目录下的所有文件和子目录大小
+
+df：disk free 
+df -h 查看磁盘剩余情况
+
+free -h 查看内存使用情况
+
+lsblk 查看设备挂载情况
+-f 显示文件系统信息
+
+mount/umount 挂载/卸载
+mount /dev/cdrom /mnt/cdrom 作用：将dev下的cdrom磁盘，挂载到/mnt/cdrom下
+<img src="文件挂载.png"/>
+
+fdisk 分区
+-l 查看分区情况
+挂载一块新的磁盘
+1、磁盘分区
+fdisk /dev/sdb
+2、挂载
+mount /dev/sdb /home/dsy
+
+##### 进程管理类
+d.service 守护进程=系统服务
+ps查看当前进程状态
+ps 输出当前用户带有终端的进程
+ps a 列出带有终端的所有用户的进程
+ps x 当前用户的所有进程
+ps u 用户友好界面
+ps aux 常用
+-e 列出所有进程
+-u 列出某个用户关联的所有进程
+-f 显示完整格式
+ps -ef 常用
+ps aux 与 ps -ef 区别：

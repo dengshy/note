@@ -1,0 +1,3 @@
+对于pointwise feature
+本身自身是没有用的 
+需要结合local feature 和global feature
