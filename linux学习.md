@@ -94,7 +94,7 @@ noh：查找完取消高亮显示
 : s/old/new 当前行匹配到的第一个
 : s/old/new/g 当前行所有
 :%s/old/new/g 所有
-<img src="Vim.png" alt="alt text" width="800"/>
+<img src="images.Vim.png" alt="alt text" width="800"/>
 
 #### 网络篇
 
@@ -259,10 +259,10 @@ root pts/0 2024-10-19 21:00 (192.168.32.1)
 ————————————————
 sudo [命令] 用超级管理员权限执行
 修改 /etc/sudoers 添加权限
-<img src="sudoers.png" width=300/>
+<img src="images.sudoers.png" width=300/>
 
 组的概念：把拥有同样权限的用户放到一个组内
-<img src="group.png" width=300/>
+<img src="images.group.png" width=300/>
 每个用户会有一个与自己同名的组，一个用户可以属于多个组
 组的信息文件在 /etc/group 下
 创建组 groupadd [组名]
@@ -274,7 +274,7 @@ Allows people in group wheel to run all commands
 %wheel ALL=(ALL) ALL
 
 文件权限类
-<img src="文件权限.png" width=600/>
+<img src="images.文件权限.png" width=600/>
 drwxr-xr-x. 16 root root 4096 10 月 16 19:08 .config
 d：directory 目录文件
 b：block device，块设备文件
@@ -285,7 +285,7 @@ s：socket，套接字文件
 16（数字）的含义：作为目录代表子文件夹、作为目录代表硬链接数
 
 更改文件权限 chmod
-<image src="文件权限修改.png" width=500/>
+<image src="images.文件权限修改.png" width=500/>
 chmod [rwx] 直接对其他用户操作
 使文件属主、所在组、其他用户都对该文件（及其子文件）有读、写、执行操作
 chmod -R 777 [file_name/]
@@ -330,7 +330,7 @@ ls |grep -n .cfg
 gzip  gunzip 不可压缩文件夹
 zip  unzip  
 tar 打包文件 结合gzip可以压缩（使用最多）
-<img src="tar.png" width =600/>
+<img src="images.tar.png" width =600/>
 例：
 将目录下的 info 文件打包压缩，然后解压到myinfo文件夹中
 tar -zcvf info.tar.gz info
@@ -365,7 +365,7 @@ lsblk 查看设备挂载情况
 
 mount/umount 挂载/卸载
 mount /dev/cdrom /mnt/cdrom 作用：将dev下的cdrom磁盘，挂载到/mnt/cdrom下
-<img src="文件挂载.png"/>
+<img src="images.文件挂载.png"/>
 
 fdisk 分区
 -l 查看分区情况
